@@ -1,0 +1,172 @@
+.calendar{
+    background-color: #eee;
+    max-width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.calendar-year-panel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar-day-panel{
+    text-align: center;
+}
+
+.calendar-day-panel .week,
+.calendar-day-panel .days
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.calendar-day-panel .week > *,
+.calendar-day-panel .days > *
+{
+    flex-basis: calc(100% / 7);
+}
+
+.calendar-day-panel .week{
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.calendar-day-panel .days .before-month,
+.calendar-day-panel .days .after-month
+{
+    opacity: 0.5;
+}
+
+.calendar-day-panel .days .date{
+    display: block;
+    padding: 5px;
+    transition: background-color 0.2s ease-in;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.calendar-day-panel .days .date:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day-panel .days .today{
+    background-color: #66ccff;
+}
+.calendar-day-panel .days .is-selected{
+    border: 2px solid #000;
+}
+
+/**/
+
+.event-panel{
+    position: relative;
+    font-size: 12px;
+    line-height: 1.5;
+    height: calc((12px * 1.5 * 2 + 1px) * 48);
+}
+
+.event-panel .event-panel-time-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.event-panel .event-panel-time-bar > *{
+    font-family: monospace;
+    border-top: 1px solid #000;
+    /*padding-bottom: 1.5em;*/
+    height: 3em; /* line-height did not align with height so must set */
+}
+
+.event-panel .event-panel-events{
+    flex-basis: 100%;
+    position: relative;
+}
+
+.event-panel .event-panel-events-padding{
+    display: flex;
+    height: 100%;
+    pointer-events: none;
+}
+
+.event-panel .event-panel-events-padding:before{
+    content: '00:00';
+    font-family: monospace;
+    opacity: 0;
+}
+.event-panel .event-panel-events:before{
+    opacity: 0;
+}
+
+.event-panel .event-panel-events .event{
+    position: absolute;
+    border: 1px solid #66ccff;
+    background-color: #33ffff;
+    max-width: 20%;
+    pointer-events: all;
+}
+
+#dialogs{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in, visibility 0.2s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#dialogs.showing{
+    opacity: 1;
+    visibility: visible;
+}
+
+.dialog{
+    position: relative;
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.dialog.showing{
+    display: block;
+}
+
+.dialog .button-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+#event-dialog .title{
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+#event-dialog form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+#event-dialog form > *{
+    margin: 10px 0;
+}
+#event-dialog form label div{
+    margin-bottom: 3px;
+}
+#event-dialog form input{
+    box-sizing: border-box;
+    width: 100%;
+}
